@@ -2,7 +2,7 @@ import 'package:shopping_list/data/categories_data.dart';
 import 'package:shopping_list/enum/category_type.dart';
 import 'package:shopping_list/models/grocery.dart';
 
-final List<Grocery> groceries = [
+final List<Grocery> groceriesList = [
   Grocery(
     name: 'Milk',
     count: 2,
