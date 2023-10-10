@@ -22,8 +22,17 @@ class _AppState extends State<App> {
     groceries = groceriesList;
   }
 
+  void _onDelete(Grocery deletedGrocery) {
+    setState(() {
+      groceries = groceries
+          .where((grocery) => grocery.id != deletedGrocery.id)
+          .toList();
+    });
+  }
+
   @override
   build(BuildContext context) {
+    print('DEBUG:GROCERY_LIST: $groceries');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Groceries'),
@@ -49,7 +58,7 @@ class _AppState extends State<App> {
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: GroceryList(groceries),
+        child: GroceryList(groceries, onDeleteItem: _onDelete),
       ),
     );
   }
