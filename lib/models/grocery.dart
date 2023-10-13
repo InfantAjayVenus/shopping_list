@@ -4,8 +4,12 @@ import 'package:uuid/uuid.dart';
 const uuid = Uuid();
 
 class Grocery {
-  Grocery({required this.name, required this.count, required this.category})
-      : id = uuid.v4();
+  Grocery(
+      {required this.name,
+      required this.count,
+      required this.category,
+      String? uid})
+      : id = uid ?? uuid.v4();
 
   final String id;
   final String name;

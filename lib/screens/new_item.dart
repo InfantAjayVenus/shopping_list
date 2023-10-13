@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/data/categories_data.dart';
 import 'package:shopping_list/models/category.dart';
-import 'package:shopping_list/models/grocery.dart';
 
 class NewItem extends StatefulWidget {
-  const NewItem({super.key});
+  const NewItem({super.key, required this.onSave});
+  final void Function(
+      {required String name,
+      required int count,
+      required Category category}) onSave;
 
   @override
   createState() {
@@ -21,8 +24,12 @@ class _NewItemState extends State<NewItem> {
   _saveItem() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      Navigator.of(context).pop(Grocery(
-          name: itemName, count: quantity, category: selectedCategory!));
+      widget.onSave(
+        name: itemName,
+        count: quantity,
+        category: selectedCategory!,
+      );
+      Navigator.of(context).pop();
     }
   }
 
